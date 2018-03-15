@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BancoTalentosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Candidato">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Skype" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Whatsapp" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Linkedin" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cidade" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Portfolio" Type="nvarchar" MaxLength="50" />
+          <Property Name="MenosDeQuatro" Type="bit" Nullable="false" />
+          <Property Name="QuatroSeis" Type="bit" Nullable="false" />
+          <Property Name="SeisOito" Type="bit" Nullable="false" />
+          <Property Name="MaisOito" Type="bit" Nullable="false" />
+          <Property Name="FimSemana" Type="bit" Nullable="false" />
+          <Property Name="PManha" Type="bit" Nullable="false" />
+          <Property Name="PTarde" Type="bit" Nullable="false" />
+          <Property Name="PNoite" Type="bit" Nullable="false" />
+          <Property Name="PMadrugada" Type="bit" Nullable="false" />
+          <Property Name="PComercial" Type="bit" Nullable="false" />
+          <Property Name="SalarioHora" Type="int" Nullable="false" />
+          <Property Name="NomeClienteBanco" Type="nvarchar" MaxLength="50" />
+          <Property Name="CPF" Type="nvarchar" MaxLength="50" />
+          <Property Name="NomeBanco" Type="nvarchar" MaxLength="50" />
+          <Property Name="Agencia" Type="nvarchar" MaxLength="50" />
+          <Property Name="NumeroConta" Type="nvarchar" MaxLength="50" />
+          <Property Name="Link" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContaCorrente" Type="bit" Nullable="false" />
+          <Property Name="ContaPoupanca" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Conhecimento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCandidato" Type="int" Nullable="false" />
+          <Property Name="Ionic" Type="int" Nullable="false" />
+          <Property Name="Android" Type="int" Nullable="false" />
+          <Property Name="IOS" Type="int" Nullable="false" />
+          <Property Name="HTML" Type="int" />
+          <Property Name="CSS" Type="int" />
+          <Property Name="Bootstrap" Type="int" Nullable="false" />
+          <Property Name="JQuery" Type="int" Nullable="false" />
+          <Property Name="AngularJS" Type="int" Nullable="false" />
+          <Property Name="Java" Type="int" />
+          <Property Name="ASPMVC" Type="int" Nullable="false" />
+          <Property Name="C" Type="int" />
+          <Property Name="CPP" Type="int" />
+          <Property Name="Cake" Type="int" />
+          <Property Name="Django" Type="int" />
+          <Property Name="Magento" Type="int" />
+          <Property Name="PHP" Type="int" Nullable="false" />
+          <Property Name="Vue" Type="int" Nullable="false" />
+          <Property Name="Wordpress" Type="int" Nullable="false" />
+          <Property Name="Python" Type="int" />
+          <Property Name="Ruby" Type="int" />
+          <Property Name="SQLServer" Type="int" />
+          <Property Name="MySQL" Type="int" />
+          <Property Name="Salesforce" Type="int" />
+          <Property Name="Photoshop" Type="int" />
+          <Property Name="Illustrator" Type="int" />
+          <Property Name="SEO" Type="int" />
+          <Property Name="Outro" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Candidato_Conhecimento">
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="1" />
+          <End Role="Conhecimento" Type="Self.Conhecimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidato">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Conhecimento">
+              <PropertyRef Name="IdCandidato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BancoTalentosModelStoreContainer">
+          <EntitySet Name="Candidato" EntityType="Self.Candidato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Conhecimento" EntityType="Self.Conhecimento" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Candidato_Conhecimento" Association="Self.FK_Candidato_Conhecimento">
+            <End Role="Candidato" EntitySet="Candidato" />
+            <End Role="Conhecimento" EntitySet="Conhecimento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BancoTalentosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Candidato">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Skype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Whatsapp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Linkedin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Portfolio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MenosDeQuatro" Type="Boolean" Nullable="false" />
+          <Property Name="QuatroSeis" Type="Boolean" Nullable="false" />
+          <Property Name="SeisOito" Type="Boolean" Nullable="false" />
+          <Property Name="MaisOito" Type="Boolean" Nullable="false" />
+          <Property Name="FimSemana" Type="Boolean" Nullable="false" />
+          <Property Name="PManha" Type="Boolean" Nullable="false" />
+          <Property Name="PTarde" Type="Boolean" Nullable="false" />
+          <Property Name="PNoite" Type="Boolean" Nullable="false" />
+          <Property Name="PMadrugada" Type="Boolean" Nullable="false" />
+          <Property Name="PComercial" Type="Boolean" Nullable="false" />
+          <Property Name="SalarioHora" Type="Int32" Nullable="false" />
+          <Property Name="NomeClienteBanco" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CPF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NomeBanco" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Agencia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroConta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContaCorrente" Type="Boolean" Nullable="false" />
+          <Property Name="ContaPoupanca" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Conhecimento" Relationship="Self.FK_Candidato_Conhecimento" FromRole="Candidato" ToRole="Conhecimento" />
+        </EntityType>
+        <EntityType Name="Conhecimento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCandidato" Type="Int32" Nullable="false" />
+          <Property Name="Ionic" Type="Int32" Nullable="false" />
+          <Property Name="Android" Type="Int32" Nullable="false" />
+          <Property Name="IOS" Type="Int32" Nullable="false" />
+          <Property Name="HTML" Type="Int32" />
+          <Property Name="CSS" Type="Int32" />
+          <Property Name="Bootstrap" Type="Int32" Nullable="false" />
+          <Property Name="JQuery" Type="Int32" Nullable="false" />
+          <Property Name="AngularJS" Type="Int32" Nullable="false" />
+          <Property Name="Java" Type="Int32" />
+          <Property Name="ASPMVC" Type="Int32" Nullable="false" />
+          <Property Name="C" Type="Int32" />
+          <Property Name="CPP" Type="Int32" />
+          <Property Name="Cake" Type="Int32" />
+          <Property Name="Django" Type="Int32" />
+          <Property Name="Magento" Type="Int32" />
+          <Property Name="PHP" Type="Int32" Nullable="false" />
+          <Property Name="Vue" Type="Int32" Nullable="false" />
+          <Property Name="Wordpress" Type="Int32" Nullable="false" />
+          <Property Name="Python" Type="Int32" />
+          <Property Name="Ruby" Type="Int32" />
+          <Property Name="SQLServer" Type="Int32" />
+          <Property Name="MySQL" Type="Int32" />
+          <Property Name="Salesforce" Type="Int32" />
+          <Property Name="Photoshop" Type="Int32" />
+          <Property Name="Illustrator" Type="Int32" />
+          <Property Name="SEO" Type="Int32" />
+          <Property Name="Outro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Candidato" Relationship="Self.FK_Candidato_Conhecimento" FromRole="Conhecimento" ToRole="Candidato" />
+        </EntityType>
+        <Association Name="FK_Candidato_Conhecimento">
+          <End Role="Candidato" Type="Self.Candidato" Multiplicity="1" />
+          <End Role="Conhecimento" Type="Self.Conhecimento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidato">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Conhecimento">
+              <PropertyRef Name="IdCandidato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BancoTalentosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Candidato" EntityType="Self.Candidato" />
+          <EntitySet Name="Conhecimento" EntityType="Self.Conhecimento" />
+          <AssociationSet Name="FK_Candidato_Conhecimento" Association="Self.FK_Candidato_Conhecimento">
+            <End Role="Candidato" EntitySet="Candidato" />
+            <End Role="Conhecimento" EntitySet="Conhecimento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BancoTalentosModelStoreContainer" CdmEntityContainer="BancoTalentosEntities">
+          <EntitySetMapping Name="Candidato">
+            <EntityTypeMapping TypeName="BancoTalentosModel.Candidato">
+              <MappingFragment StoreEntitySet="Candidato">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Skype" ColumnName="Skype" />
+                <ScalarProperty Name="Whatsapp" ColumnName="Whatsapp" />
+                <ScalarProperty Name="Linkedin" ColumnName="Linkedin" />
+                <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Portfolio" ColumnName="Portfolio" />
+                <ScalarProperty Name="MenosDeQuatro" ColumnName="MenosDeQuatro" />
+                <ScalarProperty Name="QuatroSeis" ColumnName="QuatroSeis" />
+                <ScalarProperty Name="SeisOito" ColumnName="SeisOito" />
+                <ScalarProperty Name="MaisOito" ColumnName="MaisOito" />
+                <ScalarProperty Name="FimSemana" ColumnName="FimSemana" />
+                <ScalarProperty Name="PManha" ColumnName="PManha" />
+                <ScalarProperty Name="PTarde" ColumnName="PTarde" />
+                <ScalarProperty Name="PNoite" ColumnName="PNoite" />
+                <ScalarProperty Name="PMadrugada" ColumnName="PMadrugada" />
+                <ScalarProperty Name="PComercial" ColumnName="PComercial" />
+                <ScalarProperty Name="SalarioHora" ColumnName="SalarioHora" />
+                <ScalarProperty Name="NomeClienteBanco" ColumnName="NomeClienteBanco" />
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="NomeBanco" ColumnName="NomeBanco" />
+                <ScalarProperty Name="Agencia" ColumnName="Agencia" />
+                <ScalarProperty Name="NumeroConta" ColumnName="NumeroConta" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="ContaCorrente" ColumnName="ContaCorrente" />
+                <ScalarProperty Name="ContaPoupanca" ColumnName="ContaPoupanca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conhecimento">
+            <EntityTypeMapping TypeName="BancoTalentosModel.Conhecimento">
+              <MappingFragment StoreEntitySet="Conhecimento">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdCandidato" ColumnName="IdCandidato" />
+                <ScalarProperty Name="Ionic" ColumnName="Ionic" />
+                <ScalarProperty Name="Android" ColumnName="Android" />
+                <ScalarProperty Name="IOS" ColumnName="IOS" />
+                <ScalarProperty Name="HTML" ColumnName="HTML" />
+                <ScalarProperty Name="CSS" ColumnName="CSS" />
+                <ScalarProperty Name="Bootstrap" ColumnName="Bootstrap" />
+                <ScalarProperty Name="JQuery" ColumnName="JQuery" />
+                <ScalarProperty Name="AngularJS" ColumnName="AngularJS" />
+                <ScalarProperty Name="Java" ColumnName="Java" />
+                <ScalarProperty Name="ASPMVC" ColumnName="ASPMVC" />
+                <ScalarProperty Name="C" ColumnName="C" />
+                <ScalarProperty Name="CPP" ColumnName="CPP" />
+                <ScalarProperty Name="Cake" ColumnName="Cake" />
+                <ScalarProperty Name="Django" ColumnName="Django" />
+                <ScalarProperty Name="Magento" ColumnName="Magento" />
+                <ScalarProperty Name="PHP" ColumnName="PHP" />
+                <ScalarProperty Name="Vue" ColumnName="Vue" />
+                <ScalarProperty Name="Wordpress" ColumnName="Wordpress" />
+                <ScalarProperty Name="Python" ColumnName="Python" />
+                <ScalarProperty Name="Ruby" ColumnName="Ruby" />
+                <ScalarProperty Name="SQLServer" ColumnName="SQLServer" />
+                <ScalarProperty Name="MySQL" ColumnName="MySQL" />
+                <ScalarProperty Name="Salesforce" ColumnName="Salesforce" />
+                <ScalarProperty Name="Photoshop" ColumnName="Photoshop" />
+                <ScalarProperty Name="Illustrator" ColumnName="Illustrator" />
+                <ScalarProperty Name="SEO" ColumnName="SEO" />
+                <ScalarProperty Name="Outro" ColumnName="Outro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

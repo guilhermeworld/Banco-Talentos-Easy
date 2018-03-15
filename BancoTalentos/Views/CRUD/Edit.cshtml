@@ -1,0 +1,649 @@
+﻿@model BancoTalentos.Models.CrudModelView
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	@Html.HiddenFor(model => model.candidato.Id)
+	@Html.HiddenFor(model => model.conhecimento.Id)
+	@Html.HiddenFor(model => model.conhecimento.IdCandidato)
+
+
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#DPessoais">Dados Pessoais</a></li>
+		<li><a data-toggle="tab" href="#DBancario">Dados Bancários</a></li>
+		<li><a data-toggle="tab" href="#DConhecimento">Conhecimentos</a></li>
+	</ul>
+
+	<p></p>
+
+	<div class="tab-content">
+		<div class="tab-pane fade in active" id="DPessoais">
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+			<div class="form-group row">
+				<div class="col-md-6">
+					@Html.LabelFor(model => model.candidato.Nome)<label class="color-red">*</label>
+					@Html.EditorFor(model => model.candidato.Nome, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.candidato.Nome, "", new { @class = "text-danger" })
+				</div>
+
+				<div class="col-md-6">
+					@Html.LabelFor(model => model.candidato.Email)<label class="color-red">*</label>
+					@Html.EditorFor(model => model.candidato.Email, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.candidato.Email, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+
+			<div class="form-group row">
+				<div class="col-md-6">
+					@Html.LabelFor(model => model.candidato.Skype)<label class="color-red">*</label>
+					@Html.EditorFor(model => model.candidato.Skype, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.candidato.Skype, "", new { @class = "text-danger" })
+				</div>
+
+				<div class="col-md-6">
+					@Html.LabelFor(model => model.candidato.Whatsapp)<label class="color-red">*</label>
+					@Html.EditorFor(model => model.candidato.Whatsapp, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.candidato.Whatsapp, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-12">
+					@Html.LabelFor(model => model.candidato.Linkedin)
+					@Html.EditorFor(model => model.candidato.Linkedin, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-6">
+					@Html.LabelFor(model => model.candidato.Cidade)<label class="color-red">*</label>
+					@Html.EditorFor(model => model.candidato.Cidade, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.candidato.Cidade, "", new { @class = "text-danger" })
+				</div>
+				<div class="col-md-6">
+					@Html.LabelFor(model => model.candidato.Estado)<label class="color-red">*</label>
+					@Html.EditorFor(model => model.candidato.Estado, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.candidato.Estado, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-12">
+					@Html.LabelFor(model => model.candidato.Portfolio)
+					@Html.EditorFor(model => model.candidato.Portfolio, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+			</div>
+
+
+			<div class="form-group row">
+				<div class="col-md-12">
+					<h4><label>Qual é sua disponibilidade para trabalhar hoje? <label class="color-red">*</label></label></h4>
+					@Html.ValidationMessage("Disponivel", new { @class = "text-danger" })
+				</div>
+				<div class="col-md-12">
+					<div class="checkbox">
+						@Html.LabelFor(model => model.candidato.MenosDeQuatro)
+						@Html.EditorFor(model => model.candidato.MenosDeQuatro)
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="checkbox">
+						@Html.LabelFor(model => model.candidato.QuatroSeis)
+						@Html.EditorFor(model => model.candidato.QuatroSeis)
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="checkbox">
+						@Html.LabelFor(model => model.candidato.SeisOito)
+						@Html.EditorFor(model => model.candidato.SeisOito)
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="checkbox">
+						@Html.LabelFor(model => model.candidato.MaisOito)
+						@Html.EditorFor(model => model.candidato.MaisOito)
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="checkbox">
+						@Html.LabelFor(model => model.candidato.FimSemana)
+						@Html.EditorFor(model => model.candidato.FimSemana)
+					</div>
+				</div>
+			</div>
+
+
+			<div class="form-group row">
+
+				<div class="col-md-12">
+					<h4><label>Pra você, qual é o melhor horário para trabalhar? <label class="color-red">*</label></label></h4>
+					@Html.ValidationMessage("Periodo", new { @class = "text-danger" })
+				</div>
+
+				<div class="col-md-12">
+					<div class="checkbox">
+						@Html.LabelFor(model => model.candidato.PManha)
+						@Html.EditorFor(model => model.candidato.PManha)
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="checkbox">
+						@Html.LabelFor(model => model.candidato.PTarde)
+						@Html.EditorFor(model => model.candidato.PTarde)
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="checkbox">
+						@Html.LabelFor(model => model.candidato.PNoite)
+						@Html.EditorFor(model => model.candidato.PNoite)
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="checkbox">
+						@Html.LabelFor(model => model.candidato.PMadrugada)
+						@Html.EditorFor(model => model.candidato.PMadrugada)
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="checkbox">
+						@Html.LabelFor(model => model.candidato.PComercial)
+						@Html.EditorFor(model => model.candidato.PComercial)
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-12">
+					@Html.LabelFor(model => model.candidato.SalarioHora)<label class="color-red">*</label>
+					@Html.TextBoxFor(model => model.candidato.SalarioHora, new { @class = "form-control" })
+					@Html.ValidationMessageFor(model => model.candidato.SalarioHora, "", new { @class = "text-danger" })
+				</div>
+			</div>
+		</div>
+
+		<div class="tab-pane fade" id="DBancario">
+
+			<div class="form-group row">
+				<div class="col-md-6">
+					@Html.LabelFor(model => model.candidato.NomeClienteBanco)
+					@Html.EditorFor(model => model.candidato.NomeClienteBanco, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+
+				<div class="col-md-6">
+					@Html.LabelFor(model => model.candidato.CPF)
+					@Html.EditorFor(model => model.candidato.CPF, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-4">
+					@Html.LabelFor(model => model.candidato.NomeBanco)
+					@Html.EditorFor(model => model.candidato.NomeBanco, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+
+				<div class="col-md-4">
+					@Html.LabelFor(model => model.candidato.Agencia)
+					@Html.EditorFor(model => model.candidato.Agencia, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+
+				<div class="col-md-4">
+					@Html.LabelFor(model => model.candidato.NumeroConta)
+					@Html.EditorFor(model => model.candidato.NumeroConta, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-12">
+					<div class="checkbox">
+						@Html.LabelFor(model => model.candidato.ContaCorrente)
+						@Html.EditorFor(model => model.candidato.ContaCorrente)
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="checkbox">
+						@Html.LabelFor(model => model.candidato.ContaPoupanca)
+						@Html.EditorFor(model => model.candidato.ContaPoupanca)
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+<div class="tab-pane fade" id="DConhecimento">
+			<div class="form-group">
+
+				<div>
+					<h4><label>Ionic<label class="color-red">*</label></label></h4>
+					@Html.ValidationMessage("Ionic", new { @class = "text-danger" })
+				</div>
+				
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.Ionic", i, new { id = "conhecimento_Ionic." + i })
+					<label for="conhecimento_Ionic.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+
+				<div>
+					<h4><label>Android<label class="color-red">* </label></label> </h4>
+					@Html.ValidationMessage("Android", new { @class = "text-danger" })
+				</div>
+				
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.Android", i, new { id = "conhecimento_Android." + i })
+					<label for="conhecimento_Andriod.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+
+				<div>
+					<h4><label>IOS<label class="color-red">*</label></label></h4>
+					@Html.ValidationMessage("IOS", new { @class = "text-danger" })
+				</div>
+				
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.IOS", i, new { id = "conhecimento_IOS." + i })
+					<label for="conhecimento_IOS.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+				<h4><label>HTML</label></h4>
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.HTML", i, new { id = "conhecimento_HTML." + i })
+					<label for="conhecimento_HTML.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+				<h4><label>CSS</label></h4>
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.CSS", i, new { id = "conhecimento_CSS." + i })
+					<label for="conhecimento_CSS.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+
+				<div>
+					<h4><label>Bootstrap<label class="color-red">*</label></label></h4>
+					@Html.ValidationMessage("Bootstrap", new { @class = "text-danger" })
+				</div>
+				
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.Bootstrap", i, new { id = "conhecimento_Bootstrap." + i })
+					<label for="conhecimento_Bootstrap.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+
+				<div>
+					<h4><label>JQuery<label class="color-red">*</label></label></h4>
+					@Html.ValidationMessage("JQuery", new { @class = "text-danger" })
+				</div>
+				
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.JQuery", i, new { id = "conhecimento_JQuery." + i })
+					<label for="conhecimento_JQuery.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+
+				<div>
+					<h4><label>AngularJS<label class="color-red">*</label></label></h4>
+					@Html.ValidationMessage("AngularJS", new { @class = "text-danger" })
+				</div>
+				
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.AngularJS", i, new { id = "conhecimento_AngularJS." + i })
+					<label for="conhecimento_AngularJS.@i">@i</label>
+				</div>
+
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+				<h4><label>Java</label></h4>
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.Java", i, new { id = "conhecimento_Java." + i })
+					<label for="conhecimento_Java.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+
+				<div>
+					<h4><label>ASP.Net MVC<label class="color-red">*</label></label></h4>
+					@Html.ValidationMessage("ASPMVC", new { @class = "text-danger" })
+				</div>
+				
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.ASPMVC", i, new { id = "conhecimento_ASPMVC." + i })
+					<label for="conhecimento_ASPMVC.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+				<h4><label>C</label></h4>
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.C", i, new { id = "conhecimento_C." + i })
+					<label for="conhecimento_C.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+				<h4><label>C++</label></h4>
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.CPP", i, new { id = "conhecimento_CPP." + i })
+					<label for="conhecimento_CPP.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+				<h4><label>Cake</label></h4>
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.Cake", i, new { id = "conhecimento_Cake." + i })
+					<label for="conhecimento_Cake.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+				<h4><label>Django</label></h4>
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.Django", i, new { id = "conhecimento_Django." + i })
+					<label for="conhecimento_Django.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+				<h4><label>Magento</label></h4>
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.Magento", i, new { id = "conhecimento_Magento." + i })
+					<label for="conhecimento_Magento.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+
+				<div>
+					<h4><label>PHP<label class="color-red">*</label></label></h4>
+					@Html.ValidationMessage("PHP", new { @class = "text-danger" })
+				</div>
+				
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.PHP", i  , new { id = "conhecimento_PHP." + i })
+					<label for="conhecimento_PHP.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class=" form-group">
+
+				<div>
+					<h4><label>Vue<label class="color-red">*</label></label></h4>
+					@Html.ValidationMessage("Vue", new { @class = "text-danger" })
+				</div>
+				
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.Vue", i  , new { id = "conhecimento_Vue." + i })
+					<label for="conhecimento_Vue.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+
+				<div>
+					<h4><label>Wordpress<label class="color-red">*</label></label></h4>
+					@Html.ValidationMessage("Wordpress", new { @class = "text-danger" })
+				</div>
+				
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.Wordpress", i  , new { id = "conhecimento_Wordpress." + i })
+					<label for="conhecimento_Wordpress.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+				<h4><label>Python</label></h4>
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.Python", i, new { id = "conhecimento_Python." + i })
+					<label for="conhecimento_Python.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+				<h4><label>Ruby</label></h4>
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.Ruby", i, new { id = "conhecimento_Ruby." + i })
+					<label for="conhecimento_Ruby.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+				<h4><label>SQL Server</label></h4>
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.SQLServer", i, new { id = "conhecimento_SQLServer." + i })
+					<label for="conhecimento_SQLServer.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+				<h4><label>MySQL</label></h4>
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.MySQL", i, new { id = "conhecimento_MySQL." + i })
+					<label for="conhecimento_MySQL.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+				<h4><label>Salesforce</label></h4>
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.Salesforce", i, new { id = "conhecimento_Salesforce." + i })
+					<label for="conhecimento_Salesforce.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+				<h4><label>Photoshop</label></h4>
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.Photoshop", i, new { id = "conhecimento_Photoshop." + i })
+					<label for="conhecimento_Photoshop.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+				<h4><label>Illustrator</label></h4>
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+				<div class="radio-inline">
+					@Html.RadioButton("conhecimento.Illustrator", i, new { id = "conhecimento_Illustrator." + i })
+					<label for="conhecimento_Illustrator.@i">@i</label>
+				</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group">
+				<h4><label>SEO</label></h4>
+				<label class="addpadding">Não Conheço</label>
+				@for (int i = 0; i < 6; i++)
+				{
+					<div class="radio-inline">
+						@Html.RadioButton("conhecimento.SEO", i, new { id = "conhecimento_SEO."+i })
+						<label for="conhecimento_SEO.@i">@i</label>
+					</div>
+				}
+				<label class="addpadding">Nível Sênior</label>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-12">
+					@Html.LabelFor(model => model.conhecimento.Outro)
+					@Html.EditorFor(model => model.conhecimento.Outro, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-12">
+					@Html.LabelFor(model => model.candidato.Link)
+					@Html.EditorFor(model => model.candidato.Link, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-12">
+					<input type="submit" value="Confirmar" class="btn btn-success btn-lg" />
+				</div>
+			</div>
+
+		</div>
+
+		<div class="form-group row">
+			<div class="">
+				<p></p>
+				@Html.ActionLink("Cancelar", "Index", "", new { @class = "btn btn-danger btn-lg" })
+			</div>
+		</div>
+
+	</div>
+}
+
